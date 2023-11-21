@@ -4,7 +4,7 @@ public class DBConnection {
 
 	public static Connection CreateConnection() {
 		Connection conn = null;
-		String url = "jdbc:mysql://127.0.0.1:3306/wish?useUnicode=true&characterEncoding=utf8";
+		String url = "jdbc:mysql://127.0.0.1:3306/cnpm?useUnicode=true&characterEncoding=utf8";
 		String username = "root";
 		String password = "huythang02";
 		

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
+	<form action="register" method="post">
     <div class="container">
         <div class="container-image">
             <img src="https://laforce.vn/wp-content/uploads/2023/04/giay-mac-nhat-the-gioi.jpg" alt="" class="ctn-image">
@@ -32,6 +33,7 @@
             <span class="ctn-input-rgs"></span> <a href="" class="ctn-input-rps" >Login here</a>
         </div>
     </div>
+    </form>
 </body>
 </html>
 
