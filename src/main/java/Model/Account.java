@@ -1,6 +1,6 @@
 package Model;
 
-public class Register {
+public class Account {
 	private int user_id;
 	private String user_name;
 	private String password;
@@ -9,12 +9,12 @@ public class Register {
 	private int is_sell;
 	private int is_admin;
 	
-	public Register() {
+	public Account() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Register(int user_id, String user_name, String password, String gmail, String phone, int is_sell,
+	public Account(int user_id, String user_name, String password, String gmail, String phone, int is_sell,
 			int is_admin) {
 		super();
 		this.user_id = user_id;

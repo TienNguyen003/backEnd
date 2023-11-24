@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import DB.DBConnection;
+import Model.Account;
 
 public class Dao {
 	Connection conn = null;
@@ -36,9 +37,9 @@ public class Dao {
 	
 	// test
 	// them tk
-		public void Signup(String user, String pass, String gmail, String phone) {
-			String query = "INSERT into users (user_name, password, gmail, phone , isSell, isAdmin)\r\n"
-					+ "values (?, ?, ?, 0, 0);";
+		public void Signup(String user, String pass, String gmail) {
+			String query = "INSERT into users (user_name, password, gmail, is_sell, is_admin)\r\n"
+					+ "values (?, ?, ?, 0, 0)";
 			
 			try {
 				conn = new DBConnection().CreateConnection();
@@ -46,7 +47,6 @@ public class Dao {
 				ps.setString(1, user);
 				ps.setString(2, pass);
 				ps.setString(3, gmail);
-				ps.setString(4, phone);
 				ps.executeUpdate();
 						
 			} catch (Exception e) {
@@ -55,7 +55,63 @@ public class Dao {
 		
 		}
 		
-	
+	// check tk
+		public Account CheckAccountExist(String user) {
+			String query = "select * from users \r\n"
+					+ "where user_name = ?";
+			
+			try {
+				conn = new DBConnection().CreateConnection();
+				ps = conn.prepareStatement(query);
+				ps.setString(1, user);
+				rs = ps.executeQuery();
+				
+				while (rs.next()) {
+					return new Account(rs.getInt(1),
+							rs.getString(2), 
+							rs.getString(3), 
+							rs.getString(4),
+							rs.getString(5),
+							rs.getInt(6), 
+							rs.getInt(7));
+				}
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			return null;
+		}
+		
+		// login
+		public Account login(String user, String pass) {
+			String query = "SELECT * FROM users\r\n"
+					+ "where user_name = ?\r\n"
+					+ "and password = ?";
+			
+			try {
+				conn = new DBConnection().CreateConnection();
+				ps = conn.prepareStatement(query);
+				ps.setString(1, user);
+				ps.setString(2, pass);
+				rs = ps.executeQuery();
+				
+				while (rs.next()) {
+					return new Account(rs.getInt(1), 
+							rs.getString(2), 
+							rs.getString(3), 
+							rs.getString(4), 
+							rs.getString(5),
+							rs.getInt(6), 
+							rs.getInt(7));
+				}
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			return null;
+		}
 
 		// main
 		public static void main(String[] args) {
