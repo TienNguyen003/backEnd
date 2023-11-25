@@ -266,7 +266,15 @@ html {
   border: none;
 }
 
-
+.btnView{
+  	display: inline-block !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: rgba(200, 200, 200, 0.5);
+    border-color: transparent;
+    cursor: pointer;
+ }
 .shop__body-product-list-category-checkbox {
   height: 50px;
   width: 100%;
@@ -574,5 +582,5 @@ html {
   }
   .pages__footer-list-item-title::after{
     margin: 20px auto;
-  }
+  }  
 } 

@@ -126,7 +126,7 @@ public class Dao {
 				rs = ps.executeQuery();
 				while(rs.next()) {
 					Product pro = new Product();
-					pro.setId(rs.getInt("id"));
+					pro.setId(rs.getInt("product_id"));
 					pro.setName(rs.getString("name"));
 					pro.setStatus(rs.getInt("status"));
 					pro.setPrice(rs.getFloat("price"));
@@ -150,15 +150,15 @@ public class Dao {
 			return p;
 		}
 		// lấy 1 sản phẩm
-		public Product getProduct(int id) {
+		public Product getProduct(String id) {
 			Product p = new Product();
-			String sql = "SELECT * FROM products WHERE id = '"+id+"'";
+			String sql = "SELECT * FROM products WHERE product_id = '"+id+"'";
 			try {
 				conn = new DBConnection().CreateConnection();
 				ps = conn.prepareStatement(sql);
 				rs = ps.executeQuery();
 				while(rs.next()) {
-					p.setId(rs.getInt("id"));
+					p.setId(rs.getInt("product_id"));
 					p.setName(rs.getString("name"));
 					p.setStatus(rs.getInt("status"));
 					p.setPrice(rs.getFloat("price"));
@@ -183,6 +183,5 @@ public class Dao {
 		// main
 		public static void main(String[] args) {
 			Dao dao = new Dao();
-			System.out.println(dao.toString());
 		}
 }
