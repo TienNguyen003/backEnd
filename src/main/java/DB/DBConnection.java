@@ -4,9 +4,9 @@ public class DBConnection {
 
 	public static Connection CreateConnection() {
 		Connection conn = null;
-		String url = "jdbc:mysql://127.0.0.1:3306/cnpm?useUnicode=true&characterEncoding=utf8";
+		String url = "jdbc:mysql://127.0.0.1:3307/cnpm?useUnicode=true&characterEncoding=utf8";
 		String username = "root";
-		String password = "huythang02";
+		String password = "Tien17082@3";
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

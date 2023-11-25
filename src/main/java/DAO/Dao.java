@@ -5,9 +5,12 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import DB.DBConnection;
 import Model.Account;
+import Model.Product;
 
 public class Dao {
 	Connection conn = null;
@@ -111,6 +114,70 @@ public class Dao {
 			}
 			
 			return null;
+		}
+		
+		// lấy sản phẩm
+		public List<Product> getProducts(){
+			List<Product> p = new ArrayList<>();
+			String sql = "SELECT * FROM products";
+			try {
+				conn = new DBConnection().CreateConnection();
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					Product pro = new Product();
+					pro.setId(rs.getInt("id"));
+					pro.setName(rs.getString("name"));
+					pro.setStatus(rs.getInt("status"));
+					pro.setPrice(rs.getFloat("price"));
+					pro.setQuantity(rs.getInt("quantity"));
+					pro.setDes(rs.getString("description"));
+					pro.setImg(rs.getString("imagel"));
+					pro.setColor(rs.getString("color"));
+					pro.setSell(rs.getInt("sell_count"));
+					pro.setCateId(rs.getInt("cate_id"));
+					pro.setUserId(rs.getInt("user_id"));
+					pro.setCreateDate(rs.getDate("create_date"));
+					pro.setSize(rs.getString("size"));
+					p.add(pro);					
+				}
+				ps.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return p;
+		}
+		// lấy 1 sản phẩm
+		public Product getProduct(int id) {
+			Product p = new Product();
+			String sql = "SELECT * FROM products WHERE id = '"+id+"'";
+			try {
+				conn = new DBConnection().CreateConnection();
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					p.setId(rs.getInt("id"));
+					p.setName(rs.getString("name"));
+					p.setStatus(rs.getInt("status"));
+					p.setPrice(rs.getFloat("price"));
+					p.setQuantity(rs.getInt("quantity"));
+					p.setDes(rs.getString("description"));
+					p.setImg(rs.getString("imagel"));
+					p.setColor(rs.getString("color"));
+					p.setSell(rs.getInt("sell_count"));
+					p.setCateId(rs.getInt("cate_id"));
+					p.setUserId(rs.getInt("user_id"));
+					p.setCreateDate(rs.getDate("create_date"));
+					p.setSize(rs.getString("size"));				
+				}
+				ps.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return p;
 		}
 
 		// main
